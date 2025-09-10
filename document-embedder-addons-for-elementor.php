@@ -190,3 +190,4 @@ final class BAddon_main_element {
 new BAddon_main_element();
 
 require_once 'enable-mime-type.php';
+require_once dirname( __FILE__ ) . '/public/helper/bae-common-settings-render.php';
