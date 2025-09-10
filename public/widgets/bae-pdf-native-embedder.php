@@ -160,15 +160,15 @@ class bae_pdf_native_embedder extends Widget_Base {
 				[
 					'flex-start' => [
 						'title' => esc_html__( 'Left', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-left',
+						'icon' 	=> 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-center',
+						'icon' 	=> 'eicon-text-align-center',
 					],
 					'flex-end' => [
 						'title' => esc_html__( 'Right', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-right',
+						'icon' 	=> 'eicon-text-align-right',
 					],
 				],
 				'default' 	=> 'center',
@@ -243,6 +243,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
@@ -250,6 +251,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'selector' => '{{WRAPPER}} .my_native iframe',
 			]
 		);
+
 		$this->add_control(
 			'border_radius',
 			[
@@ -261,6 +263,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				],
 			]
 		);
+
 		$this->add_group_control(
 			Group_Control_Box_Shadow::get_type(),
 			[
@@ -268,14 +271,20 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'selector' => '{{WRAPPER}} .my_native iframe',
 			]
 		);
+
 		$this->end_controls_section();
+
 		$this->start_controls_section(
 			'section_file_name_style',
 			[
 				'label' => esc_html__( 'File Name', 'b-addon' ),
 				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+                    'file_name' => 'yes'
+                ],
 			]
 		);
+
 		$this->add_control(
 			'file_name_color',
 			[
@@ -286,6 +295,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				],
 			]
 		);
+
 		$this->add_group_control(
 			Group_Control_Typography::get_type(),
 			[
@@ -293,6 +303,189 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'selector' => '{{WRAPPER}} .native_style h3',
 			]
 		);
+		$this->add_control(
+			'file_name_margin',
+			[
+				'label' => esc_html__( 'Margin', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style h3' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'file_name_padding',
+			[
+				'label' => esc_html__( 'Padding', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style h3' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_section();
+
+		$this->start_controls_section(
+			'section_button_style',
+			[
+				'label' => esc_html__( 'Download Button', 'b-addon' ),
+				'tab'   => Controls_Manager::TAB_STYLE,
+				'condition' => [
+                    'download_button' => 'yes'
+                ],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
+			[
+				'name' => 'download_btn_typography',
+				'selector' => '{{WRAPPER}} .native_style .bbutton-bottom',
+			]
+		);
+
+		$this->start_controls_tabs( 'download_button_style_tabs' );
+
+		$this->start_controls_tab(
+			'download_button_style_normal',
+			[
+				'label' => esc_html__( 'Normal', 'b-addon' ),
+			]
+		);
+
+		$this->add_control(
+			'download_button_text_color',
+			[
+				'label' => esc_html__( 'Text Color', 'b-addon' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'download_button_bg_color',
+			[
+				'label' => esc_html__( 'Background Color', 'b-addon' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'download_btn_border',
+				'selector' => '{{WRAPPER}} .native_style .bbutton-bottom',
+			]
+		);
+
+		$this->add_control(
+			'download_btn_border_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'download_button_style_hover',
+			[
+				'label' => esc_html__( 'Hover', 'b-addon' ),
+			]
+		);
+
+		$this->add_control(
+			'download_button_text_color_hover',
+			[
+				'label' => esc_html__( 'Text Color', 'b-addon' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom:hover' => 'color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'download_button_bg_color_hover',
+			[
+				'label' => esc_html__( 'Background Color', 'b-addon' ),
+				'type' => Controls_Manager::COLOR,
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom:hover' => 'background-color: {{VALUE}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'download_btn_border_hover',
+				'selector' => '{{WRAPPER}} .native_style .bbutton-bottom:hover',
+			]
+		);
+
+		$this->add_control(
+			'download_btn_border_radius_hover',
+			[
+				'label' => esc_html__( 'Border Radius', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom:hover' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->end_controls_tabs();
+
+		$this->add_control(
+			'viewer_margin',
+			[
+				'label' => esc_html__( 'Margin', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom' => 'margin: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_control(
+			'viewer_padding',
+			[
+				'label' => esc_html__( 'Padding', 'b-addon' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%', 'em' ],
+				'selectors' => [
+					'{{WRAPPER}} .native_style .bbutton-bottom' => 'padding: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'viewer_box_shadow',
+				'selector' => '{{WRAPPER}} .native_style .bbutton-bottom',
+			]
+		);
+		
 		$this->end_controls_section();
 	}
 
