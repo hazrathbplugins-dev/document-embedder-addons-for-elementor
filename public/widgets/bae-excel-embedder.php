@@ -3,11 +3,13 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_excel_embedder extends Widget_Base {
+	use BAE_Common_Settings_Render;
 
 	public function get_name() {
 		return 'bae-xlsx-embedder';
@@ -174,6 +176,12 @@ class bae_excel_embedder extends Widget_Base {
 			]
 		);
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
+	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'excel_viewer', $label = 'Excel Viewer', $condition = [], $selector = '.my-excel iframe' );
 	}
 
 	protected function render() {

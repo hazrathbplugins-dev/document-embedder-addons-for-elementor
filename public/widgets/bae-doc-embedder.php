@@ -3,12 +3,14 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_doc_embedder extends Widget_Base {
 
+	use BAE_Common_Settings_Render;
 	public function get_name() {
 		return 'bae-doc-embedder';
 	}
@@ -187,7 +189,14 @@ class bae_doc_embedder extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
 	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'doc_viewer', $label = 'Doc Viewer', $condition = [], $selector = '.my-doc iframe' );
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$doc_file = $settings['doc_file'];

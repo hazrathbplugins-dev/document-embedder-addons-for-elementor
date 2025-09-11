@@ -3,11 +3,13 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_excel_viewer extends Widget_Base {
+	use BAE_Common_Settings_Render;
 
 	public function get_name() {
 		return 'bae-excel-viewer';
@@ -240,6 +242,14 @@ class bae_excel_viewer extends Widget_Base {
         );
 
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
+	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'excel_viewer', $label = 'Excel Viewer', $condition = [], $selector = '.only_excel_viewer iframe' );
+		$this->bae_text_common_styles_render( $id = 'file_name', $label = 'File Name', $condition = [ 'file_name' => 'yes' ], $selector = '.only_excel h3', $default = 'Excel Test File' );
+		$this->bae_button_common_styles_render( $id = 'download_btn', $label = 'Download Button', $condition = [ 'download_button' => 'yes' ], $selector = '.only_excel .bbutton-bottom', $default = 'Download Excel' );
 	}
 		
 	protected function render() {

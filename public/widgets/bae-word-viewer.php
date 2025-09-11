@@ -3,11 +3,13 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_word_viewer extends Widget_Base {
+	use BAE_Common_Settings_Render;
 
 	public function get_name() {
 		return 'bae-word-viewer';
@@ -239,7 +241,15 @@ class bae_word_viewer extends Widget_Base {
         );
 
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
     
+	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'word_viewer', $label = 'Word Viewer', $condition = [], $selector = '.word_viewer iframe' );
+		$this->bae_text_common_styles_render( $id = 'file_name', $label = 'File Name', $condition = [ 'file_name' => 'yes' ], $selector = '.word_style h3', $default = '' );
+		$this->bae_button_common_styles_render( $id = 'download_btn', $label = 'Download Button', $condition = [ 'download_button' => 'yes' ], $selector = '.word_style .bbutton-bottom', $default = '' );
 	}
 
 	protected function render() {

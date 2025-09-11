@@ -3,11 +3,13 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_pp_embedder extends Widget_Base {
+	use BAE_Common_Settings_Render;
 
 	public function get_name() {
 		return 'bae-pp-embedder';
@@ -176,12 +178,18 @@ class bae_pp_embedder extends Widget_Base {
 				],
 				'default' 	=> 'center',
 					'selectors' => [
-					'{{WRAPPER}} .powerpoin_embeder' => 'display:flex;justify-content:{{VALUE}}',
+					'{{WRAPPER}} .powerpoin_embeder center' => 'display:flex;justify-content:{{VALUE}}',
 				],
 				'toggle' 	=> true,
 			]
 		);
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
+	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'powerpoint_viewer', $label = 'PowerPoint Viewer', $condition = [], $selector = '.powerpoin_embeder iframe' );
 	}
 
 	protected function render() {

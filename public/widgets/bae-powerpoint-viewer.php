@@ -3,12 +3,14 @@ namespace BAddon\Widgets;
 
 use Elementor\Widget_Base;
 use Elementor\Controls_Manager;
+use BAddon\BAE\BAE_Common_Settings_Render;
 
 if ( !defined( 'ABSPATH' ) ) 
 	exit; 
 
 class bae_powerpoint_viewer extends Widget_Base {
-
+	use BAE_Common_Settings_Render;
+	
 	public function get_name() {
 		return 'bae-powerpoint-viewer';
 	}
@@ -240,8 +242,17 @@ class bae_powerpoint_viewer extends Widget_Base {
         );
 
 		$this->end_controls_section();
+
+		$this->render_common_style_settings();
     
 	}
+
+	public function render_common_style_settings() {
+		$this->bae_box_common_styles_render( $id = 'powerpoint_viewer', $label = 'PowerPoint Viewer', $condition = [], $selector = '.powr_point_style iframe' );
+		$this->bae_text_common_styles_render( $id = 'file_name', $label = 'File Name', $condition = [ 'file_name' => 'yes' ], $selector = '.power_point_viewer h3', $default = 'PDF Test File' );
+		$this->bae_button_common_styles_render( $id = 'download_btn', $label = 'Download Button', $condition = [ 'download_button' => 'yes' ], $selector = ' .power_point_viewer .bbutton-bottom', $default = 'Download PDF' );
+	}
+
 	protected function render() {
 		$settings = $this->get_settings_for_display();
 		$pptx_file = $settings['pptx_file'];
