@@ -66,6 +66,7 @@ class bae_doc_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'Upload Doc File', 'b-addon' ),
 				'type' 			=> Controls_Manager::MEDIA,
 				'placeholder' 	=> esc_html__( 'Upload a word file here.', 'b-addon' ),
+				'description' 	=> esc_html__( 'Upload a Word document file (DOCX) on live server.', 'b-addon' ),
 				'media_type' 	=> 'application/pdf',
 				'dynamic' => [
 					'active' => true,
@@ -82,6 +83,7 @@ class bae_doc_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'Doc URL', 'b-addon' ),
 				'type' 			=> Controls_Manager::URL,
 				'placeholder' 	=> esc_html__( 'Paste a word file link here.', 'b-addon' ),
+				'description' 	=> esc_html__( 'Provide a link to a Word document (DOCX) file from sharable server.', 'b-addon' ),
 				'show_external' => true,
 				'default' => [
 					'is_external' 	=> true,
@@ -169,15 +171,15 @@ class bae_doc_embedder extends Widget_Base {
 				[
 					'flex-start' => [
 						'title' => esc_html__( 'Left', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-left',
+						'icon' 	=> 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-center',
+						'icon' 	=> 'eicon-text-align-center',
 					],
 					'flex-end' => [
 						'title' => esc_html__( 'Right', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-right',
+						'icon' 	=> 'eicon-text-align-right',
 					],
 				],
 				'default' 	=> 'center',

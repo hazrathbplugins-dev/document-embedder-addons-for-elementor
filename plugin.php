@@ -119,7 +119,7 @@ class Bae_BAddon {
 		$elements_manager->add_category(
 			'b-addon',
 			[
-				'title' => __( 'B Addon', 'b-addon' ),
+				'title' => __( 'Document Embedder Addons', 'b-addon' ),
 				'icon' => 'fa fa-plug',
 			]
 		);

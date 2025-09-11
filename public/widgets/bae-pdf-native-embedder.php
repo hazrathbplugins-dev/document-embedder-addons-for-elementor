@@ -23,7 +23,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'bl_icon eicon-document-file';
+		return 'bl_icon eicon-post-excerpt';
 	}
 
 	public function get_categories() {
@@ -63,6 +63,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'Upload PDF File', 'b-addon' ),
 				'type' 			=> Controls_Manager::MEDIA,
 				'media_type' 	=> 'application/pdf',
+				'description' 	=> esc_html__( 'Upload a file on live server', 'b-addon' ),
 				'dynamic' 		=> [
 					'active' => true,
 				],
@@ -77,6 +78,7 @@ class bae_pdf_native_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'PDF URL', 'b-addon' ),
 				'type' 			=> Controls_Manager::URL,
 				'placeholder' 	=> esc_html__( 'Paste a pdf file link here.', 'b-addon' ),
+				'description' 	=> esc_html__( 'Provide a link to a file from sharable server', 'b-addon' ),
 				'show_external' => true,
 				'default' => [
 					'is_external' 	=> true,

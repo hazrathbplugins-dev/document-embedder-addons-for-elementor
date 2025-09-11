@@ -20,7 +20,7 @@ class bae_powerpoint_viewer extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'bl_icon eicon-document-file';
+		return 'bl_icon eicon-slides';
 	}
 
 	public function get_categories() {
@@ -63,6 +63,7 @@ class bae_powerpoint_viewer extends Widget_Base {
 				'label' 		=> esc_html__( 'Upload PowerPoint File', 'b-addon' ),
 				'type' 			=> Controls_Manager::MEDIA,
 				'media_type' 	=> 'application/vnd.openxmlformats-officedocument.presentationml.presentation',
+				'description' 	=> esc_html__( 'Upload a file on live server', 'b-addon' ),
 				'dynamic' 		=> [
 					'active' => true,
 				],
@@ -78,6 +79,7 @@ class bae_powerpoint_viewer extends Widget_Base {
 				'label' 		=> esc_html__( 'PowerPoint URL', 'b-addon' ),
 				'type' 			=> Controls_Manager::URL,
 				'placeholder' 	=> esc_html__( 'Paste a powerpoint file link here.', 'b-addon' ),
+				'description' 	=> esc_html__( 'Provide a link to a file from sharable server', 'b-addon' ),
 				'show_external' => true,
 				'default' 		=> [
 					'is_external' 	=> true,
@@ -167,15 +169,15 @@ class bae_powerpoint_viewer extends Widget_Base {
 				[
 					'flex-start' => [
 						'title' => esc_html__( 'Left', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-left',
+						'icon' 	=> 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-center',
+						'icon' 	=> 'eicon-text-align-center',
 					],
 					'flex-end' => [
 						'title' => esc_html__( 'Right', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-right',
+						'icon' 	=> 'eicon-text-align-right',
 					],
 				],
 				'default' 	=> 'center',

@@ -20,7 +20,7 @@ class bae_excel_embedder extends Widget_Base {
 	}
 
 	public function get_icon() {
-		return 'bl_icon far eicon-document-file';
+		return 'bl_icon far eicon-menu-toggle';
 	}
 
 	public function get_categories() {
@@ -59,6 +59,7 @@ class bae_excel_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'Upload Excel File', 'b-addon' ),
 				'type' 			=> Controls_Manager::MEDIA,
 				'media_type' 	=> 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+				'description' 	=> esc_html__( 'Upload a file on live server', 'b-addon' ),
 				'dynamic' 		=> [
 					'active' => true,
 				],
@@ -73,6 +74,7 @@ class bae_excel_embedder extends Widget_Base {
 				'label' 		=> esc_html__( 'Excel URL', 'b-addon' ),
 				'type' 			=> Controls_Manager::URL,
 				'placeholder' 	=> esc_html__( 'Paste an excel file link here.', 'b-addon' ),
+				'description' 	=> esc_html__( 'Provide a link to a file from sharable server', 'b-addon' ),
 				'show_external' => true,
 				'default' 		=> [
 					'is_external' 	=> true,
@@ -157,15 +159,15 @@ class bae_excel_embedder extends Widget_Base {
 				[
 					'flex-start' => [
 						'title' => esc_html__( 'Left', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-left',
+						'icon' 	=> 'eicon-text-align-left',
 					],
 					'center' => [
 						'title' => esc_html__( 'Center', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-center',
+						'icon' 	=> 'eicon-text-align-center',
 					],
 					'flex-end' => [
 						'title' => esc_html__( 'Right', 'b-addon' ),
-						'icon' 	=> 'fa fa-align-right',
+						'icon' 	=> 'eicon-text-align-right',
 					],
 				],
 				'default' 	=> 'center',
